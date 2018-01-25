@@ -2,7 +2,7 @@
    //================================================
    // creating new york times search page using locations on google maps 
    // number of artices reuturned (10 by default)
-	// users clicks locations on map then store lat and long, in varible 
+	// users clicks locations on map then search near by city (population of ???) and store in varible 
    // create a new york times query for that choosen location 
    // query can return number of nearest locations is (max 20 by default)
    // can choose radius 
