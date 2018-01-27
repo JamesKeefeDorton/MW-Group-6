@@ -29,8 +29,12 @@
           center: {lat: 35.855007, lng: -78.840645},
           zoom: 5
         });
+
+        
               map.addListener('click', function(e) {
                 placeMarkerAndPanTo(e.latLng, map);
+                
+
               });
             }
 
@@ -40,5 +44,8 @@
                 map: map
               });
               map.panTo(latLng);   
-              console.log("marker position is" ,marker.position);  
+              var lat = marker.getPosition().lat();
+              var lng = marker.getPosition().lng();
+              console.log("marker position is" ,lat ,lng); 
+     
       } // map "initmap" function end
