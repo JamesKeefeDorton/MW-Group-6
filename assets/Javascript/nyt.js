@@ -32,6 +32,7 @@ $(document).ready(function(){
 		}).done(function(result) {
 
 			console.log(result);
+			$("#well-section").empty();
 			renderArticles(result.results[0].article_list.results);
 
 			console.log("urlSem result is ", result);
