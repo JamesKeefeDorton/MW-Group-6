@@ -23,15 +23,32 @@
 // - Query the New York Times Semantic API for the concept name (State) to get the 10 articles. 
 
 
-   // this displays map
-    var map;
+   // this function displays map and adds functionality
       function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
+       var map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 35.855007, lng: -78.840645},
-          zoom: 8
+          zoom: 5
+
         });
-          var marker = new google.maps.Marker({
-          position: uluru,
-          map: map
-        });
-      }
+            
+        
+              map.addListener('click', function(e) {
+                placeMarkerAndPanTo(e.latLng, map);
+
+              });
+            }
+
+            function placeMarkerAndPanTo(latLng, map) {
+              var marker = new google.maps.Marker({
+                position: latLng,
+                map: map
+              });
+              map.panTo(latLng);   
+
+              var lat = marker.getPosition().lat();
+              var lng = marker.getPosition().lng();
+                     
+                     
+              console.log("marker position is" ,lat ,lng); 
+          
+      } // map "initmap" function end
