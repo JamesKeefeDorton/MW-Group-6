@@ -31,6 +31,7 @@ $(document).ready(function(){
 			method: 'GET'
 		}).done(function(result) {
 			console.log(result);
+			renderArticles(result.results[0].article_list.results);
 		}).fail(function(err) {
 			throw err;
 		});
