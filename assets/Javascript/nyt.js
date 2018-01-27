@@ -1,6 +1,7 @@
+function getArticles(state) {
 $(document).ready(function(){
 	var conceptName;
-	var state = "New York";
+	//var state = "New York";
 	var urlGeo = "https://cors-anywhere.herokuapp.com/https://api.nytimes.com/svc/semantic/v2/geocodes/query.json";
 	urlGeo += '?' + $.param({
 		'api-key': "b9f91d369ff59547cd47b931d8cbc56b:0:74623931",
@@ -37,3 +38,4 @@ $(document).ready(function(){
 		throw err;
 	});
 });
+}
