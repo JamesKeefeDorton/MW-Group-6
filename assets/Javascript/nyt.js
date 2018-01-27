@@ -29,7 +29,7 @@ $(document).ready(function(){
 			url: urlSem,
 			method: 'GET'
 		}).done(function(result) {
-			console.log(result);
+			console.log("urlSem result is ", result);
 		}).fail(function(err) {
 			throw err;
 		});
