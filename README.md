@@ -4,7 +4,7 @@ to do list
 ================================================
 - creating new york times search page using locations on google maps (geo api)
 - users clicks locations on map then search the state where user clicked and store in varible 
-- create a new york times query for that choosen location (semantic api) 
+- create a new york times query for that choosen location (geographic api) 
 - using geo api get concept (state) to create our new york times query semantic api
 - number of artices reuturned (10 by default)
 - comment every line for easy understaning 
