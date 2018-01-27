@@ -30,8 +30,12 @@ $(document).ready(function(){
 			url: urlSem,
 			method: 'GET'
 		}).done(function(result) {
+
 			console.log(result);
 			renderArticles(result.results[0].article_list.results);
+
+			console.log("urlSem result is ", result);
+
 		}).fail(function(err) {
 			throw err;
 		});
