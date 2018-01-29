@@ -9,7 +9,7 @@
 			var link = $("<a>");
 			link.attr("href", arr[i].url);
 			heading.append(link);
-			var title = $("<h3>");
+			var title = $("<strong>");
 			title.attr("class", "panel-title");
 			title.text(arr[i].title);
 			link.append(title);
@@ -20,3 +20,7 @@
 			$("#well-section").append(panel);
 		}
 	}
+$("#clear").on("click", function() {
+
+  $("#well-section").empty();
+});

@@ -40,7 +40,7 @@
               var geocoder = new google.maps.Geocoder;
               var infowindow = new google.maps.InfoWindow;
 
-              function geocodeLatLng(geocoder, map, infowindow) {
+              function geocodeLatLng(geocoder, map) {
               geocoder.geocode({'location': latLng}, function(results, status) {
                 if (status === 'OK') {
                   console.log(results[0]);
