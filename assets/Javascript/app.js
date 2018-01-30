@@ -47,8 +47,8 @@
               function geocodeLatLng(geocoder, map, infowindow) {
               geocoder.geocode({'location': latLng}, function(results, status) {
                 if (status === 'OK') {
-                  console.log(results[0]);
-                  console.log(results[0].formatted_address);
+                  //console.log(results[0]);
+                  //console.log(results[0].formatted_address);
                   var state;
                   getState: for (let i = 0; i < results[0].address_components.length; i++) {
                     for (let j = 0; j < results[0].address_components[i].types.length; j++) {
@@ -56,6 +56,7 @@
                         state = results[0].address_components[i].long_name;
                         getArticles(state);
                         break getState;
+
                       } // if statement end
                     } // for loop end
                   } // for loop end
@@ -66,6 +67,9 @@
             } // geocodeLatLng function end
 
       
+                
+                  //console.log(state);
+
             geocodeLatLng(geocoder, map, infowindow);
             
 

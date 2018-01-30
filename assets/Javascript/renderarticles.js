@@ -8,6 +8,7 @@
 			panel.append(heading);
 			var link = $("<a>");
 			link.attr("href", arr[i].url);
+			link.attr("target", "_blank");
 			heading.append(link);
 			var title = $("<strong>");
 			title.attr("class", "panel-title");

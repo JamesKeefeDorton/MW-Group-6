@@ -1,5 +1,5 @@
 function getArticles(state) {
-$(document).ready(function(){
+
 	var conceptName;
 	//var state = "New York";
 	var urlGeo = "https://cors-anywhere.herokuapp.com/https://api.nytimes.com/svc/semantic/v2/geocodes/query.json";
@@ -12,9 +12,9 @@ $(document).ready(function(){
 		url: urlGeo,
 		method: 'GET'
 	}).done(function(result) {
-		console.log(result);
+		//console.log(result);
 		conceptName = result.results[0]["concept_name"];
-		console.log(conceptName);
+		//console.log(conceptName);
 		for (let i = 0; i < conceptName.length; i++) {
 			if (conceptName[i] === " ") {
 				conceptName = conceptName.slice(0, i) + "%20" + conceptName.slice(i+1);
@@ -31,7 +31,9 @@ $(document).ready(function(){
 			method: 'GET'
 		}).done(function(result) {
 
-			
+
+			//console.log(result);
+
 			$("#well-section").empty();
 			renderArticles(result.results[0].article_list.results);
 
@@ -43,7 +45,7 @@ $(document).ready(function(){
 	}).fail(function(err) {
 		throw err;
 	});
-});
+
 
 }
 
