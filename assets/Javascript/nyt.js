@@ -31,7 +31,7 @@ $(document).ready(function(){
 			method: 'GET'
 		}).done(function(result) {
 
-			console.log(result);
+			
 			$("#well-section").empty();
 			renderArticles(result.results[0].article_list.results);
 
