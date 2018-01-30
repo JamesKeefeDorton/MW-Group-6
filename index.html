@@ -20,6 +20,10 @@
     <div class="jumbotron">
       <h1>New York Times Location Search</h1>
     </div>
+      <div id="floating-panel">
+        <input id="address" type="textbox" value="New York ">
+        <input id="submit" type="button" value="Search">
+      </div>
 
     <div id="map"></div>
 
@@ -39,18 +43,10 @@
                 <input type="text" class="form-control" id="search">
               </div>
 
-              <div class="form-group">
-                <label for="num-records">Number of Records to Retrieve:</label>
-                <select class="form-control" id="num-records">
-                  <option value="5">5</option>
-                  <option value="10">10</option>
-                  <option value="15">15</option>
-                  <option value="20">20</option>
-                </select>
-              </div>
+
 
               <button type="submit" class="btn btn-default" id="search-btn">Search</button>
-              <button type="button" class="btn btn-default">Clear</button>
+              <button type="button" class="btn btn-default" id="clear">Clear</button>
 
             </form>
           </div>
@@ -80,7 +76,7 @@
 
   </body>
 
-      <script type="text/javascript" src="assets/javascript/nyt.js"></script>
+
       <script type="text/javascript" src="assets/javascript/app.js"></script>
    <!--  google maps api link displaying map in html -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBwDvP__2ZOLY90tG8b7XroFfIXWOS_hk&callback=initMap"
