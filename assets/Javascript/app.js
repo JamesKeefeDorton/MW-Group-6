@@ -93,7 +93,7 @@ function getArticles(state) {
   }).done(function(result) {
     //console.log(result);
     conceptName = result.results[0]["concept_name"];
-    //console.log(conceptName);
+    console.log(conceptName);
     for (let i = 0; i < conceptName.length; i++) {
       if (conceptName[i] === " ") {
         conceptName = conceptName.slice(0, i) + "%20" + conceptName.slice(i+1);
