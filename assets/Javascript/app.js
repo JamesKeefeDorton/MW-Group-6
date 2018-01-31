@@ -4,15 +4,18 @@
       function initMap() {
        var map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 35.855007, lng: -78.840645},
-          zoom: 5
+          zoom: 6
 
         }); // map object end
+
 
               map.addListener('click', function(e) {
                 placeMarkerAndPanTo(e.latLng, map);
 
               }); // click function end
             }
+
+
 
                 function setMapOnAll(map) {
         for (let i = 0; i < markers.length; i++) {
@@ -37,32 +40,35 @@
               var lng = marker.getPosition().lng();
 
                      
-              console.log("marker position is" ,lat ,lng); 
+              console.log("marker position is" ,lat, lng); 
 
               var geocoder = new google.maps.Geocoder;
-              var infowindow = new google.maps.InfoWindow;
+             
 
 
 
-              function geocodeLatLng(geocoder, map, infowindow) {
+              function geocodeLatLng(geocoder, map) {
               geocoder.geocode({'location': latLng}, function(results, status) {
                 if (status === 'OK') {
-                  //console.log(results[0]);
-                  //console.log(results[0].formatted_address);
-                  var state;
+                  
+                  
+                  var locality, state;
                   getState: for (let i = 0; i < results[0].address_components.length; i++) {
                     for (let j = 0; j < results[0].address_components[i].types.length; j++) {
+                      if (results[0].address_components[i].types[j] === "locality") {
+                        locality = results[0].address_components[i].long_name;
+                      } // locality end
                       if (results[0].address_components[i].types[j] === "administrative_area_level_1") {
                         state = results[0].address_components[i].long_name;
-                        getArticles(state);
+                        getArticles(locality, state, "P");
                         break getState;
 
-                      } // if statement end
-                    } // for loop end
-                  } // for loop end
-
+                      }
+                    } 
+                  } //getState loop end
+                  console.log(locality);
                   console.log(state);
-                } // if statement end
+                } // if status statement end
               }); // geocoder.geocode function end
             } // geocodeLatLng function end
 
@@ -70,57 +76,77 @@
                 
                   //console.log(state);
 
-            geocodeLatLng(geocoder, map, infowindow);
-            
+            geocodeLatLng(geocoder, map);
+
+
+
+
+   
 
       } // map "initmap" function end
-         
 
 
-function getArticles(state) {
+
+function getArticles(locality, state, type) {
 
   var conceptName;
-  //var state = "New York";
+ 
+  var name;
+  if (type === "P") {
+    name = locality;
+  } else {
+    name = state;
+  }
   var urlGeo = "https://cors-anywhere.herokuapp.com/https://api.nytimes.com/svc/semantic/v2/geocodes/query.json";
   urlGeo += '?' + $.param({
     'api-key': "b9f91d369ff59547cd47b931d8cbc56b:0:74623931",
-    'name': state,
-    'feature_class': "A"
+    'name': name,
+    'feature_class': type
   });
   $.ajax({
     url: urlGeo,
     method: 'GET'
   }).done(function(result) {
-    //console.log(result);
-    conceptName = result.results[0]["concept_name"];
-    console.log(conceptName);
-    for (let i = 0; i < conceptName.length; i++) {
-      if (conceptName[i] === " ") {
-        conceptName = conceptName.slice(0, i) + "%20" + conceptName.slice(i+1);
+    console.log(result);
+    if (result.results.length != 0) {
+      if (type === "P") {
+        for (let i = 0; i < result.results.length; i++) {
+          if (result.results[i].admin_name1 === state) {
+            conceptName = result.results[i].concept_name;
+            i = result.results.length;
+          }
+        }
+      } else {
+        conceptName = result.results[0].concept_name;
       }
+      for (let i = 0; i < conceptName.length; i++) {
+        if (conceptName[i] === " ") {
+          conceptName = conceptName.slice(0, i) + "%20" + conceptName.slice(i+1);
+        }
+      }
+      var urlSem = "https://cors-anywhere.herokuapp.com/https://api.nytimes.com/svc/semantic/v2/concept/name/nytd_geo/" + conceptName;
+      urlSem += '?' + $.param({
+      'api-key': "b9f91d369ff59547cd47b931d8cbc56b:0:74623931",
+      'fields': "article_list"
+      });
+      console.log(urlSem);
+      $.ajax({
+        url: urlSem,
+        method: 'GET'
+      }).done(function(result) {
+
+
+        $("#well-section").empty();
+        renderArticles(result.results[0].article_list.results);
+
+        console.log("urlSem result is ", result);
+
+      }).fail(function(err) {
+        throw err;
+      });
+    } else {
+      getArticles(locality, state, "A");
     }
-    var urlSem = "https://cors-anywhere.herokuapp.com/https://api.nytimes.com/svc/semantic/v2/concept/name/nytd_geo/" + conceptName;
-    urlSem += '?' + $.param({
-    'api-key': "b9f91d369ff59547cd47b931d8cbc56b:0:74623931",
-    'fields': "article_list"
-    });
-    console.log(urlSem);
-    $.ajax({
-      url: urlSem,
-      method: 'GET'
-    }).done(function(result) {
-
-
-      //console.log(result);
-
-      $("#well-section").empty();
-      renderArticles(result.results[0].article_list.results);
-
-      console.log("urlSem result is ", result);
-
-    }).fail(function(err) {
-      throw err;
-    });
   }).fail(function(err) {
     throw err;
   });
