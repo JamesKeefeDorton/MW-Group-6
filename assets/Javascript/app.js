@@ -181,3 +181,16 @@ $("#clear").on("click", function() {
 
   $("#well-section").empty();
 });
+
+// function SearchBtn() {
+//         getArticles();
+//         var startDate = $("#start-year");
+//         var endDate = $("#end-year");
+//         var newsDate = result.results[0].article_list.results.date
+//         if(startDate.charAt(0)=== newsDate.charAt(0) && startDate.charAt(1)=== newsDate.charAt(1) && startDate.charAt(2)=== newsDate.charAt(2) && startDate.charAt(3)=== newsDate.charAt(3)){
+//             $("#well-section").empty();
+//         renderArticles(result.results[0].article_list.results);
+
+//         console.log("urlSem result is ", result);
+//           }
+// }
