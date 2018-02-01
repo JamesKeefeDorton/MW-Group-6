@@ -5,27 +5,30 @@
 	background-size: cover;
     background-repeat: no-repeat;
     text-align: center;
-    font-family: serif;
     color: #F5FFFA;
-    text-shadow: black 0.3em 0.3em 0.3em;
 
+   
 }
+
 /*.news-box {
-	height: 100%;
-	margin-bottom: 10px;
-	padding: 10px;
 	background-color: black;
 	opacity: 0.5;
     filter: alpha(opacity=50);
 }
-
+*/
 .newsMap {
+	margin-top: -18px;
+	font-size: 60px;
 	text-align: center;
     font-family: serif;
-    color: #F5FFFA;
+    text-shadow: black 0.1em 0.1em 0.1em;
+	color: white;
+
 }
-*/
+
 #map {
+	border-style: solid;
+	border-width: 2px;
  	height: 500px;
  	margin-bottom: 10px;
  }
