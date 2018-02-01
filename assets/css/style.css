@@ -2,15 +2,29 @@
 	margin-bottom: 10px;
 	height: 200px;
 	background-image: url("https://thenypost.files.wordpress.com/2014/11/future_midtown_skyline_11.jpg?quality=90&strip=all");
+	background-size: cover;
+    background-repeat: no-repeat;
     text-align: center;
     font-family: serif;
-    color: white;
-    background-size: cover;
-    background-repeat: no-repeat;
+    color: #F5FFFA;
     text-shadow: black 0.3em 0.3em 0.3em;
 
 }
+/*.news-box {
+	height: 100%;
+	margin-bottom: 10px;
+	padding: 10px;
+	background-color: black;
+	opacity: 0.5;
+    filter: alpha(opacity=50);
+}
 
+.newsMap {
+	text-align: center;
+    font-family: serif;
+    color: #F5FFFA;
+}
+*/
 #map {
  	height: 500px;
  	margin-bottom: 10px;
