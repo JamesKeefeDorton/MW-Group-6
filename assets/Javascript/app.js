@@ -14,6 +14,10 @@
 
         document.getElementById('submit').addEventListener('click', function() {
           geocodeAddress(geocoder, map);
+          console.log(geocoder ,map);
+
+          setMapOnAll(null);          
+
         });
       }
 
@@ -21,21 +25,36 @@
         var address = document.getElementById('address').value;
         geocoder.geocode({'address': address}, function(results, status) {
           if (status === 'OK') {
+                  var state;
+                  getState: for (let i = 0; i < results[0].address_components.length; i++) {
+                    for (let j = 0; j < results[0].address_components[i].types.length; j++) {
+                      if (results[0].address_components[i].types[j] === "administrative_area_level_1") {
+                        state = results[0].address_components[i].long_name;
+                        getArticles(state);
+                        break getState;
+                      }
+                    }
+                  }
+
+
             resultsMap.setCenter(results[0].geometry.location);
             var marker = new google.maps.Marker({
               map: resultsMap,
               position: results[0].geometry.location
             });
+              var lat = marker.getPosition().lat();
+              var lng = marker.getPosition().lng();
+              console.log("marker position is" ,lat ,lng);
           } else {
             alert('Geocode was not successful for the following reason: ' + status);
           }
         });
-              map.addListener('click', function(e) {
-                placeMarkerAndPanTo(e.latLng, map);
+            //   map.addListener('click', function(e) {
+            //     placeMarkerAndPanTo(e.latLng, map);
 
-              }); // click function end
-            }
-
+            //   }); // click function end
+            // }
+}
 
 
 
@@ -97,6 +116,7 @@
                   //console.log(state);
 
             geocodeLatLng(geocoder, map, infowindow);
+            geocodeAddress(geocoder);
             
 
       } // map "initmap" function end
