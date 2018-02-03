@@ -8,8 +8,7 @@
 
         }); // map object end
 
-
-              map.addListener('click', function(e) {
+                 map.addListener('click', function(e) {
                 placeMarkerAndPanTo(e.latLng, map);
 
               }); // click function end
